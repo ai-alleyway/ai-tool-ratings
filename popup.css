@@ -115,6 +115,11 @@ body {
   text-align: left;
   padding: 11px 12px;
   margin: 8px 0;
+  /* Native "lazy rendering": Chrome skips layout/paint for off-screen cards.
+     Scales the list to hundreds+ with zero JS; intrinsic-size keeps the
+     scrollbar stable for not-yet-rendered cards. */
+  content-visibility: auto;
+  contain-intrinsic-size: auto 96px;
   border: 1px solid var(--carbon);
   border-radius: 10px;
   background: var(--carbon-soft);
