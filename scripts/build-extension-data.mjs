@@ -6,8 +6,14 @@
 // Dependency-free (no npm install). A tool that is BOTH reviewed and picked keeps the
 // review entry (richer) — the pick duplicate is dropped.
 //
-// Output: ./catalog.json  (repo root — bundled into the extension AND served by
-//   GitHub Pages so the live extension can fetch the freshest copy with no permissions).
+// Output: ./catalog.json  (repo root — bundled into the extension as the OFFLINE
+//   FALLBACK). The LIVE catalog the extension fetches at runtime comes from the Astro
+//   endpoint aialleyway.com/extension-catalog.json.
+//
+// KEEP IN SYNC with aialleyway/src/pages/extension-catalog.json.ts (the live endpoint):
+//   both must emit the same entry shape, dedup rules, sort order, and blurb precedence.
+//   This script regex-parses frontmatter (no Astro content layer); the endpoint reads
+//   typed getCollection() data. A field added in one MUST be added in the other by hand.
 //
 // Usage:
 //   node scripts/build-extension-data.mjs

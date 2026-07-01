@@ -13,7 +13,9 @@ function getEntries() {
     catalogPromise = fetch(REMOTE_CATALOG)
       .then((r) => (r.ok ? r.json() : null))
       .catch(() => null)
-      .then((d) => d?.entries || fetchBundled());
+      // fall back to the bundled catalog when the remote is missing OR empty
+      // (an empty {entries:[]} is truthy) — matches popup.js's loadCatalog().
+      .then((d) => (d?.entries?.length ? d.entries : fetchBundled()));
   }
   return catalogPromise;
 }
@@ -34,10 +36,9 @@ function score(e, q) {
   if (`${e.category} ${e.subcategory} ${e.blurb}`.toLowerCase().includes(q)) return 1;
   return 0;
 }
-const xml = (s) =>
-  String(s).replace(/[<>&'"]/g, (c) =>
-    ({ "<": "&lt;", ">": "&gt;", "&": "&amp;", "'": "&apos;", '"': "&quot;" }[c])
-  );
+// Omnibox descriptions are parsed as XML, so these five chars must be escaped.
+const XML_ESCAPES = { "<": "&lt;", ">": "&gt;", "&": "&amp;", "'": "&apos;", '"': "&quot;" };
+const xml = (s) => String(s).replace(/[<>&'"]/g, (c) => XML_ESCAPES[c]);
 
 chrome.omnibox.setDefaultSuggestion({
   // Omnibox descriptions are parsed as XML — literal & must be escaped as &amp;.

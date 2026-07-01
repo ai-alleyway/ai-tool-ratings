@@ -38,7 +38,10 @@ let ENTRIES = [];
 let activeFilter = FILTERS[0];
 
 const fullUrl = (path) => `${SITE}${path}${path.includes("?") ? "&" : "?"}${UTM}`;
-const stars = (r) => "★".repeat(Math.round(r || 0)) + "☆".repeat(Math.max(0, 5 - Math.round(r || 0)));
+const stars = (r) => {
+  const filled = Math.round(r || 0);
+  return "★".repeat(filled) + "☆".repeat(Math.max(0, 5 - filled));
+};
 
 function matches(e, query) {
   if (activeFilter.types && !activeFilter.types.includes(e.type)) return false;
