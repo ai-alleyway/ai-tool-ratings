@@ -1,0 +1,133 @@
+{
+  "generatedFrom": "aialleyway/src/content/blog (format: review)",
+  "count": 14,
+  "site": "https://aialleyway.com",
+  "tools": [
+    {
+      "name": "ElevenLabs",
+      "slug": "elevenlabs-review",
+      "rating": 4.7,
+      "ratingLabel": "Category Leader",
+      "verdict": "The voices are worth it. The credit math isn't always.",
+      "category": "create",
+      "subcategory": "voice"
+    },
+    {
+      "name": "Fathom",
+      "slug": "fathom-ai-review",
+      "rating": 4.6,
+      "ratingLabel": "Category Leader",
+      "verdict": "The cleanest meeting summary I got came from the free one.",
+      "category": "automate",
+      "subcategory": "notetaker"
+    },
+    {
+      "name": "Granola",
+      "slug": "granola-ai-review",
+      "rating": 4.6,
+      "ratingLabel": "Category Leader",
+      "verdict": "Six rough bullets in, a summary sharper than my own notes out.",
+      "category": "automate",
+      "subcategory": "notetaker"
+    },
+    {
+      "name": "n8n",
+      "slug": "n8n-review",
+      "rating": 4.6,
+      "ratingLabel": "Category Leader",
+      "verdict": "It runs our whole content pipeline — once you survive the learning curve.",
+      "category": "automate",
+      "subcategory": "automation"
+    },
+    {
+      "name": "Fireflies.ai",
+      "slug": "fireflies-ai-review",
+      "rating": 4.4,
+      "ratingLabel": "Power Tool",
+      "verdict": "Brilliant for the whole team. Overkill for just you.",
+      "category": "automate",
+      "subcategory": "notetaker"
+    },
+    {
+      "name": "Fliki",
+      "slug": "fliki-ai-review",
+      "rating": 4.3,
+      "ratingLabel": "Power Tool",
+      "verdict": "The visuals are stock-basic. The voice is the reason you'd actually use it.",
+      "category": "create",
+      "subcategory": "video"
+    },
+    {
+      "name": "Zapier",
+      "slug": "zapier-review",
+      "rating": 4.3,
+      "ratingLabel": "Power Tool",
+      "verdict": "9,000 apps and the gentlest start — then the per-task bill arrives.",
+      "category": "automate",
+      "subcategory": "automation"
+    },
+    {
+      "name": "InVideo AI",
+      "slug": "invideo-ai-review",
+      "rating": 4.2,
+      "ratingLabel": "Power Tool",
+      "verdict": "It builds a whole video from one sentence. Then it tells you what that cost.",
+      "category": "create",
+      "subcategory": "video"
+    },
+    {
+      "name": "Make",
+      "slug": "make-com-review",
+      "rating": 4.2,
+      "ratingLabel": "Power Tool",
+      "verdict": "Zapier's power at n8n's price — until the operations meter catches you.",
+      "category": "automate",
+      "subcategory": "automation"
+    },
+    {
+      "name": "Pictory",
+      "slug": "pictory-ai-review",
+      "rating": 4.1,
+      "ratingLabel": "Power Tool",
+      "verdict": "It turned my blog post into a video in two minutes. The clean download cost extra.",
+      "category": "create",
+      "subcategory": "video"
+    },
+    {
+      "name": "Cartesia",
+      "slug": "cartesia-review",
+      "rating": 4,
+      "ratingLabel": "Power Tool",
+      "verdict": "Sub-100ms voice that developers love and creators outgrow fast.",
+      "category": "create",
+      "subcategory": "voice"
+    },
+    {
+      "name": "Descript",
+      "slug": "descript-review",
+      "rating": 4,
+      "ratingLabel": "Power Tool",
+      "verdict": "The transcript editing feels like magic. The AI-credit bill breaks the spell.",
+      "category": "create",
+      "subcategory": "video"
+    },
+    {
+      "name": "Murf AI",
+      "slug": "murf-ai-review",
+      "rating": 3.8,
+      "ratingLabel": "Solid Choice",
+      "verdict": "The studio is the reason to buy Murf. The voice isn't.",
+      "category": "create",
+      "subcategory": "voice"
+    },
+    {
+      "name": "Otter.ai",
+      "slug": "otter-ai-review",
+      "rating": 3.8,
+      "ratingLabel": "Solid Choice",
+      "verdict": "The AI notes nailed it. The stingy free plan and a privacy suit didn't.",
+      "category": "automate",
+      "subcategory": "notetaker"
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="popup.css" />
+    <title>AI Tool Ratings</title>
+  </head>
+  <body>
+    <header class="hdr">
+      <div class="brand">
+        <img src="icons/icon-32.png" alt="" class="brand__mark" width="20" height="20" />
+        <span class="brand__name">AI Tool Ratings</span>
+      </div>
+      <span class="brand__by">by AI Alleyway</span>
+    </header>
+
+    <div class="search">
+      <input
+        id="q"
+        type="search"
+        placeholder="Search a tool — Granola, n8n, ElevenLabs…"
+        autocomplete="off"
+        autofocus
+      />
+    </div>
+
+    <div id="filters" class="filters"><!-- category chips injected --></div>
+
+    <main id="list" class="list" aria-live="polite"><!-- results injected --></main>
+
+    <p id="empty" class="empty" hidden>No tool matches that. Try another name or category.</p>
+
+    <footer class="ftr">
+      <span id="count" class="ftr__count"></span>
+      <a
+        class="ftr__link"
+        href="https://aialleyway.com/?utm_source=chrome-extension&utm_medium=referral&utm_campaign=ai-tool-ratings"
+        target="_blank"
+        rel="noopener"
+        >All reviews →</a
+      >
+    </footer>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
