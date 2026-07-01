@@ -22,6 +22,7 @@ body {
   max-height: 560px;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
   background: var(--void);
   color: var(--polar);
   font-family: var(--font);
@@ -111,10 +112,9 @@ body {
 }
 .card {
   display: block;
-  width: 100%;
   text-align: left;
   padding: 11px 12px;
-  margin: 4px 6px;
+  margin: 8px 0;
   border: 1px solid var(--carbon);
   border-radius: 10px;
   background: var(--carbon-soft);
@@ -133,8 +133,10 @@ body {
   gap: 10px;
 }
 .card__name {
+  min-width: 0;
   font-weight: 600;
   font-size: 15px;
+  overflow-wrap: anywhere;
 }
 .card__rating {
   display: flex;
