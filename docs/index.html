@@ -155,7 +155,8 @@
 
       /* ---- taxonomy band (the real product structure) ---- */
       .band { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin-top: 44px; }
-      .band .inner { display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px 22px; padding: 26px 0; }
+      /* vertical-only padding: keep .wrap's horizontal padding (don't zero it via shorthand) */
+      .band .inner { display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px 22px; padding-top: 26px; padding-bottom: 26px; }
       .band .stats { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 22px; }
       .band .lead { font-family: var(--mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ash-dim); }
       .band .stat { font-family: var(--mono); font-size: 15px; color: var(--polar); }
@@ -164,7 +165,7 @@
       .band .note { margin-left: auto; font-size: 14px; color: var(--ash); }
 
       /* ---- value row ---- */
-      .values { display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px; padding: 56px 0; }
+      .values { display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px; padding-top: 56px; padding-bottom: 56px; }
       .value .k { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--amber); }
       .value h3 { font-size: 18px; font-weight: 600; margin-top: 10px; }
       .value p { color: var(--ash); font-size: 14.5px; margin-top: 7px; }
@@ -191,7 +192,7 @@
       @media (max-width: 860px) {
         .hero { grid-template-columns: 1fr; gap: 38px; padding: 30px 0 24px; }
         .stage { justify-content: flex-start; }
-        .values { grid-template-columns: 1fr; gap: 26px; padding: 44px 0; }
+        .values { grid-template-columns: 1fr; gap: 26px; padding-top: 44px; padding-bottom: 44px; }
         .band .inner { flex-direction: column; align-items: flex-start; gap: 14px; }
         .band .note { margin-left: 0; }
       }
