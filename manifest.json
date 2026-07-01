@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "AI Tool Ratings — by AI Alleyway",
-  "version": "1.0.0",
-  "description": "Search independent, hands-on ratings and one-line verdicts for popular AI tools. Reviewed by AI Alleyway.",
+  "name": "AI Alleyway — AI Tool Reviews, Picks & Guides",
+  "version": "1.1.0",
+  "description": "Search independent AI-tool reviews, top picks, and buying guides from AI Alleyway — ratings and verdicts, one click away.",
   "action": {
     "default_popup": "popup.html",
     "default_title": "AI Tool Ratings",

@@ -1,74 +1,71 @@
-// Omnibox: type "aa <tool>" in the address bar → suggestions from the bundled
-// dataset → Enter opens that tool's review. No permissions required
-// (chrome.tabs.create/update do not need the "tabs" permission).
+// Omnibox: type "aa <query>" in the address bar → suggestions across the whole
+// AI Alleyway catalog (reviews, picks, guides) → Enter opens the best match.
+// No permissions required (chrome.tabs.create/update don't need "tabs"; the
+// catalog fetch uses GitHub Pages CORS, no host permission).
 
 const SITE = "https://aialleyway.com";
 const UTM = "utm_source=chrome-extension&utm_medium=referral&utm_campaign=ai-tool-ratings-omnibox";
+const REMOTE_CATALOG = "https://ai-alleyway.github.io/ai-tool-ratings/catalog.json";
 
-let toolsPromise = null;
-function getTools() {
-  if (!toolsPromise) {
-    toolsPromise = fetch(chrome.runtime.getURL("data/tools.json"))
-      .then((r) => r.json())
-      .then((d) => d.tools || [])
-      .catch(() => []);
+let catalogPromise = null;
+function getEntries() {
+  if (!catalogPromise) {
+    catalogPromise = fetch(REMOTE_CATALOG)
+      .then((r) => (r.ok ? r.json() : null))
+      .catch(() => null)
+      .then((d) => d?.entries || fetchBundled());
   }
-  return toolsPromise;
+  return catalogPromise;
+}
+function fetchBundled() {
+  return fetch(chrome.runtime.getURL("catalog.json"))
+    .then((r) => r.json())
+    .then((d) => d.entries || [])
+    .catch(() => []);
 }
 
-function reviewUrl(slug) {
-  return `${SITE}/${slug}/?${UTM}`;
-}
+const fullUrl = (path) => `${SITE}${path}${path.includes("?") ? "&" : "?"}${UTM}`;
 
-function score(tool, q) {
-  const name = tool.name.toLowerCase();
-  if (name === q) return 3;
-  if (name.startsWith(q)) return 2;
-  if (name.includes(q) || (tool.subcategory || "").includes(q)) return 1;
+function score(e, q) {
+  const name = e.name.toLowerCase();
+  if (name === q) return 4;
+  if (name.startsWith(q)) return 3;
+  if (name.includes(q)) return 2;
+  if (`${e.category} ${e.subcategory} ${e.blurb}`.toLowerCase().includes(q)) return 1;
   return 0;
 }
-
-function xml(s) {
-  return String(s).replace(/[<>&'"]/g, (c) =>
+const xml = (s) =>
+  String(s).replace(/[<>&'"]/g, (c) =>
     ({ "<": "&lt;", ">": "&gt;", "&": "&amp;", "'": "&apos;", '"': "&quot;" }[c])
   );
-}
 
 chrome.omnibox.setDefaultSuggestion({
-  description: "Search AI Alleyway tool ratings — e.g. <match>granola</match>, <match>n8n</match>",
+  description: "Search AI Alleyway — reviews, picks & guides (e.g. <match>granola</match>, <match>best ai voice</match>)",
 });
 
 chrome.omnibox.onInputChanged.addListener(async (input, suggest) => {
   const q = input.trim().toLowerCase();
-  const tools = await getTools();
-  const ranked = tools
-    .map((t) => ({ t, s: q ? score(t, q) : 1 }))
+  const entries = await getEntries();
+  const ranked = entries
+    .map((e) => ({ e, s: q ? score(e, q) : 1 }))
     .filter((x) => x.s > 0)
-    .sort((a, b) => b.s - a.s || (b.t.rating ?? 0) - (a.t.rating ?? 0))
-    .slice(0, 6);
+    .sort((a, b) => b.s - a.s || (b.e.rating ?? 0) - (a.e.rating ?? 0))
+    .slice(0, 8);
 
   suggest(
-    ranked.map(({ t }) => ({
-      content: t.slug,
-      description: `${xml(t.name)} — ${xml((t.rating ?? "").toString())}${
-        t.ratingLabel ? " " + xml(t.ratingLabel) : ""
-      } · <dim>${xml(t.verdict)}</dim>`,
-    }))
+    ranked.map(({ e }) => {
+      const mark = e.rating != null ? `${e.rating}★` : e.badge || e.type;
+      return { content: e.url, description: `${xml(e.name)} — <dim>${xml(mark)}</dim>` };
+    })
   );
 });
 
 chrome.omnibox.onInputEntered.addListener(async (text, disposition) => {
+  const entries = await getEntries();
   const q = text.trim().toLowerCase();
-  const tools = await getTools();
-  // exact slug match (from a chosen suggestion) else best-scoring name match
-  const bySlug = tools.find((t) => t.slug === q);
-  const best =
-    bySlug ||
-    tools
-      .map((t) => ({ t, s: score(t, q) }))
-      .sort((a, b) => b.s - a.s)[0]?.t;
-
-  const url = best ? reviewUrl(best.slug) : `${SITE}/?${UTM}`;
+  const byUrl = entries.find((e) => e.url === text); // chosen suggestion carries the url
+  const best = byUrl || entries.map((e) => ({ e, s: score(e, q) })).sort((a, b) => b.s - a.s)[0]?.e;
+  const url = best ? fullUrl(best.url) : `${SITE}/?${UTM}`;
   if (disposition === "currentTab") chrome.tabs.update({ url });
   else chrome.tabs.create({ url, active: disposition !== "newBackgroundTab" });
 });

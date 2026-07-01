@@ -1,31 +1,32 @@
-# AI Tool Ratings — by AI Alleyway
+# AI Alleyway — AI Tool Reviews, Picks & Guides
 
-A tiny, free Chrome extension that puts independent, hands-on **AI tool ratings** one click away.
-Search any tool we've reviewed and get its score, a one-line verdict, and a link to the full
-write-up — right from your toolbar or the address bar.
+A tiny, free Chrome extension that puts independent, hands-on **AI-tool reviews, top picks, and buying
+guides** one click away. Search any tool we've reviewed or picked, or find a comparison / best-of guide
+— right from your toolbar or the address bar.
 
 Built and maintained by **[AI Alleyway](https://aialleyway.com)**, an independent AI-tools review site.
 
 ## What it does
 
-- **Popup search** — click the toolbar icon, type a tool name (Granola, n8n, ElevenLabs…), and see its
-  rating, our "Category Leader / Power Tool / Solid Choice" label, and the verdict in one line.
-- **Filter by category** — Create / Automate / Grow.
-- **Address-bar search** — type `aa` then a tool name (e.g. `aa granola`) and hit Enter to jump straight
-  to the review.
-- Every result links to the full editorial review on aialleyway.com.
+- **Popup search** across the whole catalog — reviews (with our rating + one-line verdict), curated
+  picks, and guides (comparisons, best-of roundups, how-tos).
+- **Filter by type** — All / Tools / Compare / Best-of / Guides.
+- **Address-bar search** — type `aa` then anything (e.g. `aa granola`, `aa best ai voice`) and hit Enter
+  to jump straight to the page.
+- Every result links to the full editorial page on aialleyway.com.
 
-The ratings come from real, hands-on testing — the same reviews published on the site.
+Ratings and verdicts come from real, hands-on testing — the same reviews published on the site.
 
 ## Privacy
 
-This extension **collects nothing.** No accounts, no tracking, no analytics, no data leaves your
-browser. Ratings ship inside the extension, so search works offline. See [PRIVACY.md](./PRIVACY.md).
+This extension **collects no personal data.** No accounts, no tracking, no analytics. The catalog ships
+bundled (so search works offline); to stay current it fetches a public catalog file from our GitHub
+Pages host — an ordinary request for a public file, never used to track you. See [PRIVACY.md](./PRIVACY.md).
 
 ## Permissions
 
-**None.** No host permissions, no content scripts, no access to your browsing. It only reads its own
-bundled data file and opens a review page when you click one.
+**None.** No host permissions, no content scripts, no access to your browsing. It reads its bundled
+catalog (and a public updated copy over standard CORS) and opens a page when you click a result.
 
 ## Install
 
@@ -35,7 +36,8 @@ bundled data file and opens a review page when you click one.
 
 ## Development
 
-The tool dataset (`data/tools.json`) is generated from the review frontmatter on the AI Alleyway site:
+The catalog (`catalog.json`) is generated from the AI Alleyway site content — review + article
+frontmatter and the picks JSON:
 
 ```bash
 # with the aialleyway site repo as a sibling directory:
@@ -43,6 +45,12 @@ node scripts/build-extension-data.mjs
 # or point it explicitly:
 AA_SITE_DIR=/path/to/aialleyway node scripts/build-extension-data.mjs
 ```
+
+`catalog.json` lives at the repo root: it is both bundled into the extension (offline fallback) **and**
+served by GitHub Pages so the published extension can fetch the freshest copy with no permissions.
+**To update the live data without re-submitting to the Chrome Web Store:** regenerate and push —
+Pages redeploys and installed copies pick it up on next open. Only *code* changes require a CWS
+resubmit.
 
 No build step and no dependencies — it's plain HTML/CSS/JS (Manifest V3). Load it unpacked to test.
 

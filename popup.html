@@ -4,32 +4,32 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="popup.css" />
-    <title>AI Tool Ratings</title>
+    <title>AI Alleyway — Search</title>
   </head>
   <body>
     <header class="hdr">
       <div class="brand">
         <img src="icons/icon-32.png" alt="" class="brand__mark" width="20" height="20" />
-        <span class="brand__name">AI Tool Ratings</span>
+        <span class="brand__name">AI Alleyway</span>
       </div>
-      <span class="brand__by">by AI Alleyway</span>
+      <span class="brand__by">reviews · picks · guides</span>
     </header>
 
     <div class="search">
       <input
         id="q"
         type="search"
-        placeholder="Search a tool — Granola, n8n, ElevenLabs…"
+        placeholder="Search — Granola, n8n vs Zapier, best AI voice…"
         autocomplete="off"
         autofocus
       />
     </div>
 
-    <div id="filters" class="filters"><!-- category chips injected --></div>
+    <div id="filters" class="filters"><!-- type chips injected --></div>
 
     <main id="list" class="list" aria-live="polite"><!-- results injected --></main>
 
-    <p id="empty" class="empty" hidden>No tool matches that. Try another name or category.</p>
+    <p id="empty" class="empty" hidden>No match. Try another name, tool, or topic.</p>
 
     <footer class="ftr">
       <span id="count" class="ftr__count"></span>
@@ -38,7 +38,7 @@
         href="https://aialleyway.com/?utm_source=chrome-extension&utm_medium=referral&utm_campaign=ai-tool-ratings"
         target="_blank"
         rel="noopener"
-        >All reviews →</a
+        >Browse all →</a
       >
     </footer>
 
