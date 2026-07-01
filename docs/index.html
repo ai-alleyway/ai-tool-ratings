@@ -69,9 +69,9 @@
       }
       .brand { display: flex; align-items: center; gap: 11px; }
       .brand img { width: 30px; height: 30px; border-radius: 8px; }
-      .brand b { font-weight: 600; font-size: 17px; letter-spacing: -0.01em; }
+      .brand b { font-weight: 600; font-size: 17px; letter-spacing: -0.01em; white-space: nowrap; }
       nav .spacer { flex: 1; }
-      nav .navlink { font-family: var(--mono); font-size: 13px; color: var(--ash); }
+      nav .navlink { font-family: var(--mono); font-size: 13px; color: var(--ash); white-space: nowrap; }
       nav .navlink:hover { color: var(--polar); text-decoration: none; }
 
       /* ---- hero ---- */
@@ -125,7 +125,7 @@
       /* ---- popup product mock (lit by the streetlight) ---- */
       .stage { display: flex; justify-content: center; }
       .popup {
-        width: 340px; background: var(--void);
+        width: min(340px, 100%); background: var(--void);
         border: 1px solid #2c2c32; border-radius: 18px; overflow: hidden;
         box-shadow: 0 40px 90px -30px rgba(0, 0, 0, 0.9), 0 0 60px -18px rgba(231, 197, 154, 0.28);
       }
@@ -188,10 +188,20 @@
 
       /* ---- responsive ---- */
       @media (max-width: 860px) {
-        .hero { grid-template-columns: 1fr; gap: 44px; padding: 40px 0 24px; }
-        .stage { order: -1; }
+        .hero { grid-template-columns: 1fr; gap: 38px; padding: 30px 0 24px; }
+        .stage { justify-content: flex-start; }
         .values { grid-template-columns: 1fr; gap: 26px; padding: 44px 0; }
+        .band .inner { gap: 8px 18px; }
         .band .note { margin-left: 0; width: 100%; }
+      }
+      @media (max-width: 540px) {
+        .wrap { padding: 0 20px; }
+        nav { padding: 18px 20px; gap: 10px; }
+        nav .navlink.byaa { display: none; }
+        .hero h1 { font-size: clamp(32px, 8.5vw, 42px); }
+        .hero .sub, .omni { max-width: 100%; }
+        .brand img { width: 26px; height: 26px; }
+        .brand b { font-size: 16px; }
       }
     </style>
   </head>
@@ -199,7 +209,7 @@
     <nav>
       <span class="brand"><img src="assets/logo.png" alt="AI Alleyway" /><b>AI Tool Ratings</b></span>
       <span class="spacer"></span>
-      <a class="navlink" href="https://aialleyway.com">by AI Alleyway ↗</a>
+      <a class="navlink byaa" href="https://aialleyway.com">by AI Alleyway ↗</a>
       <a class="navlink" href="https://github.com/ai-alleyway/ai-tool-ratings">GitHub ↗</a>
     </nav>
 
