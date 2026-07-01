@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Tool Ratings — a free Chrome extension by AI Alleyway</title>
+    <meta
+      name="description"
+      content="Search independent AI-tool reviews, top picks, and buying guides from your Chrome toolbar. Hands-on ratings and verdicts, zero tracking. Free, by AI Alleyway."
+    />
+    <link rel="icon" href="../icons/icon-48.png" />
+    <meta property="og:title" content="AI Tool Ratings — free Chrome extension" />
+    <meta
+      property="og:description"
+      content="Independent AI-tool reviews, picks, and guides, one click away in Chrome. Free, by AI Alleyway."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --void: #101010;
+        --deep: #080808;
+        --carbon: #333333;
+        --carbon-soft: #1a1a1a;
+        --polar: #f3f3f3;
+        --ash: #949494;
+        --amber: #e7c59a;
+        --green: #00ac5c;
+        --font: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      }
+      * { box-sizing: border-box; margin: 0; }
+      html { scroll-behavior: smooth; }
+      body {
+        background: var(--void);
+        color: var(--polar);
+        font-family: var(--font);
+        line-height: 1.55;
+        -webkit-font-smoothing: antialiased;
+      }
+      a { color: var(--amber); }
+      .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+      header {
+        display: flex; align-items: center; gap: 10px;
+        padding: 22px 24px; max-width: 760px; margin: 0 auto;
+      }
+      header img { border-radius: 7px; }
+      header .name { font-weight: 600; font-size: 17px; }
+      header .by { color: var(--ash); font-size: 13px; margin-left: auto; }
+
+      .hero { text-align: center; padding: 48px 0 12px; }
+      .hero h1 { font-size: 40px; line-height: 1.12; font-weight: 700; letter-spacing: -0.5px; }
+      .hero h1 .amber { color: var(--amber); }
+      .hero p.sub { color: var(--ash); font-size: 18px; margin: 18px auto 0; max-width: 540px; }
+
+      .cta { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin: 30px 0 6px; }
+      .btn {
+        display: inline-flex; align-items: center; gap: 8px;
+        padding: 12px 22px; border-radius: 10px; font-weight: 600; font-size: 15px;
+        text-decoration: none; border: 1px solid var(--carbon);
+      }
+      .btn--primary { background: var(--amber); color: #101010; border-color: var(--amber); }
+      .btn--ghost { color: var(--polar); }
+      .btn--ghost:hover { border-color: var(--ash); }
+      .cta-note { color: var(--ash); font-size: 13px; margin-top: 4px; }
+
+      .preview { margin: 40px auto 8px; max-width: 380px; }
+      .pcard {
+        background: var(--carbon-soft); border: 1px solid var(--carbon);
+        border-radius: 12px; padding: 14px 16px;
+      }
+      .pcard + .pcard { margin-top: 10px; }
+      .pcard .row { display: flex; justify-content: space-between; align-items: baseline; }
+      .pcard .tool { font-weight: 600; font-size: 16px; }
+      .pcard .rate { color: var(--amber); font-size: 13px; white-space: nowrap; }
+      .pcard .lbl { color: var(--green); font-size: 11px; font-weight: 600; margin-top: 5px; }
+      .pcard .verdict { color: var(--ash); font-size: 13px; margin-top: 5px; }
+
+      .features { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; margin: 56px 0; }
+      .feature h3 { font-size: 16px; font-weight: 600; }
+      .feature p { color: var(--ash); font-size: 14px; margin-top: 6px; }
+      @media (max-width: 620px) { .features { grid-template-columns: 1fr; } .hero h1 { font-size: 32px; } }
+
+      footer {
+        border-top: 1px solid var(--carbon); padding: 28px 0 48px; margin-top: 20px;
+        color: var(--ash); font-size: 14px; text-align: center;
+      }
+      footer p + p { margin-top: 8px; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <img src="../icons/icon-48.png" alt="" width="26" height="26" />
+      <span class="name">AI Tool Ratings</span>
+      <span class="by">by <a href="https://aialleyway.com">AI Alleyway</a></span>
+    </header>
+
+    <main class="wrap">
+      <section class="hero">
+        <h1>Know which AI tool is <span class="amber">actually worth it</span> — one click away.</h1>
+        <p class="sub">
+          Search independent, hands-on reviews, top picks, and buying guides from
+          <a href="https://aialleyway.com">AI Alleyway</a> — right from your Chrome toolbar. Ratings and
+          plain-English verdicts, zero tracking.
+        </p>
+        <div class="cta">
+          <span class="btn btn--primary">Coming soon to the Chrome Web Store</span>
+          <a class="btn btn--ghost" href="https://github.com/ai-alleyway/ai-tool-ratings">View source on GitHub →</a>
+        </div>
+        <p class="cta-note">Free · no account · no permissions · no data collection.</p>
+      </section>
+
+      <section class="preview" aria-hidden="true">
+        <div class="pcard">
+          <div class="row"><span class="tool">ElevenLabs</span><span class="rate">★★★★★ 4.7</span></div>
+          <div class="lbl">Category Leader</div>
+          <div class="verdict">The voices are worth it. The credit math isn't always.</div>
+        </div>
+        <div class="pcard">
+          <div class="row"><span class="tool">Granola</span><span class="rate">★★★★★ 4.6</span></div>
+          <div class="lbl">Category Leader</div>
+          <div class="verdict">Six rough bullets in, a summary sharper than my own notes out.</div>
+        </div>
+      </section>
+
+      <section class="features">
+        <div class="feature">
+          <h3>Search everything</h3>
+          <p>Reviews, curated picks, comparisons, and best-of guides. Type a tool name or a task.</p>
+        </div>
+        <div class="feature">
+          <h3>Real ratings &amp; verdicts</h3>
+          <p>Hands-on scores and a one-line verdict for each tool — not marketing copy.</p>
+        </div>
+        <div class="feature">
+          <h3>Zero permissions</h3>
+          <p>No account, no tracking, no access to your browsing. Works offline.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        Built by <a href="https://aialleyway.com">AI Alleyway</a> — independent AI-tool reviews, picks,
+        and guides.
+      </p>
+      <p>
+        <a href="https://github.com/ai-alleyway/ai-tool-ratings/blob/main/PRIVACY.md">Privacy</a> ·
+        <a href="https://github.com/ai-alleyway/ai-tool-ratings">Open source (MIT)</a>
+      </p>
+    </footer>
+  </body>
+</html>
