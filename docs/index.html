@@ -274,7 +274,7 @@
                 <div class="vd">Which automation tool is cheaper, and which is easier — tested.</div>
               </div>
             </div>
-            <div class="pf"><span class="c">89 entries</span><span class="b">Browse all →</span></div>
+            <div class="pf"><span class="c" data-count="total" data-fmt="entries">90 entries</span><span class="b">Browse all →</span></div>
           </div>
         </div>
       </section>
@@ -284,11 +284,11 @@
       <div class="wrap inner">
         <span class="lead">What's inside</span>
         <div class="stats">
-          <span class="stat"><b>14</b> <span class="u">reviews</span></span>
-          <span class="stat"><b>36</b> <span class="u">picks</span></span>
-          <span class="stat"><b>14</b> <span class="u">comparisons</span></span>
-          <span class="stat"><b>13</b> <span class="u">best-of</span></span>
-          <span class="stat"><b>12</b> <span class="u">guides</span></span>
+          <span class="stat"><b data-count="reviews">14</b> <span class="u">reviews</span></span>
+          <span class="stat"><b data-count="picks">36</b> <span class="u">picks</span></span>
+          <span class="stat"><b data-count="comparison">15</b> <span class="u">comparisons</span></span>
+          <span class="stat"><b data-count="roundup">13</b> <span class="u">best-of</span></span>
+          <span class="stat"><b data-count="guide">12</b> <span class="u">guides</span></span>
         </div>
         <span class="note">Pulled live from aialleyway.com — always current.</span>
       </div>
@@ -324,5 +324,25 @@
         </p>
       </div>
     </footer>
+
+    <script>
+      // Keep the counts live: fetch the same catalog the extension uses (CORS-open)
+      // and update every [data-count] element from its counts. Progressive
+      // enhancement — the hardcoded values remain if the fetch is blocked/offline.
+      (function () {
+        fetch("https://aialleyway.com/extension-catalog.json")
+          .then(function (r) { return r.ok ? r.json() : null; })
+          .then(function (d) {
+            var c = d && d.counts;
+            if (!c) return;
+            document.querySelectorAll("[data-count]").forEach(function (el) {
+              var v = c[el.getAttribute("data-count")];
+              if (typeof v !== "number") return;
+              el.textContent = el.dataset.fmt === "entries" ? v + " entries" : String(v);
+            });
+          })
+          .catch(function () {});
+      })();
+    </script>
   </body>
 </html>
