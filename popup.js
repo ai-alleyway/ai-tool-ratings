@@ -1,11 +1,11 @@
 // AI Alleyway search popup. Loads a catalog of reviews + picks + guides.
-// Data source: freshest copy from GitHub Pages (CORS *, no permission needed),
-// falling back to the bundled catalog.json when offline. Links open editorial
-// pages on aialleyway.com (never affiliate).
+// Data source: freshest copy from aialleyway.com/extension-catalog.json (served
+// CORS-open, no host permission needed), falling back to the bundled catalog.json
+// when offline. Links open editorial pages on aialleyway.com (never affiliate).
 
 const SITE = "https://aialleyway.com";
 const UTM = "utm_source=chrome-extension&utm_medium=referral&utm_campaign=ai-tool-ratings";
-const REMOTE_CATALOG = "https://ai-alleyway.github.io/ai-tool-ratings/catalog.json";
+const REMOTE_CATALOG = "https://aialleyway.com/extension-catalog.json";
 const REMOTE_TIMEOUT_MS = 2500;
 
 // filter key -> which entry types it includes

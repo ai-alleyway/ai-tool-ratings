@@ -1,11 +1,11 @@
 // Omnibox: type "aa <query>" in the address bar → suggestions across the whole
 // AI Alleyway catalog (reviews, picks, guides) → Enter opens the best match.
 // No permissions required (chrome.tabs.create/update don't need "tabs"; the
-// catalog fetch uses GitHub Pages CORS, no host permission).
+// catalog fetch uses aialleyway.com's CORS-open endpoint, no host permission).
 
 const SITE = "https://aialleyway.com";
 const UTM = "utm_source=chrome-extension&utm_medium=referral&utm_campaign=ai-tool-ratings-omnibox";
-const REMOTE_CATALOG = "https://ai-alleyway.github.io/ai-tool-ratings/catalog.json";
+const REMOTE_CATALOG = "https://aialleyway.com/extension-catalog.json";
 
 let catalogPromise = null;
 function getEntries() {
