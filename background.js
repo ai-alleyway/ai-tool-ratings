@@ -40,7 +40,8 @@ const xml = (s) =>
   );
 
 chrome.omnibox.setDefaultSuggestion({
-  description: "Search AI Alleyway — reviews, picks & guides (e.g. <match>granola</match>, <match>best ai voice</match>)",
+  // Omnibox descriptions are parsed as XML — literal & must be escaped as &amp;.
+  description: "Search AI Alleyway — reviews, picks &amp; guides (e.g. <match>granola</match>, <match>best ai voice</match>)",
 });
 
 chrome.omnibox.onInputChanged.addListener(async (input, suggest) => {
