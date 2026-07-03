@@ -14,8 +14,8 @@ usage data. There are no accounts, no analytics, no tracking pixels, and no thir
 
 - The catalog (reviews, picks, and guides) ships bundled inside the extension, so searching works on
   your device — even offline.
-- To stay current, the extension fetches an updated **public catalog file** from our GitHub Pages host
-  (`ai-alleyway.github.io`). This is an ordinary request for a public static file — the same kind your
+- To stay current, the extension fetches an updated **public catalog file** from our site
+  (`aialleyway.com/extension-catalog.json`). This is an ordinary request for a public static file — the same kind your
   browser makes when loading any web page, and it necessarily includes your IP address as every web
   request does. We do **not** use it to identify, profile, or track you, and it carries no information
   about you. If the request fails (e.g. offline), the bundled copy is used.

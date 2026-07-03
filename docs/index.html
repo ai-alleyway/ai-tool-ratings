@@ -114,10 +114,7 @@
         border: 1px solid var(--line);
       }
       .btn--primary { background: var(--amber); color: #101010; border-color: var(--amber); }
-      .btn--primary .tag {
-        font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; font-weight: 500;
-        background: #101010; color: var(--amber); padding: 2px 6px; border-radius: 5px;
-      }
+      .btn--primary:hover { text-decoration: none; filter: brightness(1.06); }
       .btn--ghost { color: var(--polar); }
       .btn--ghost:hover { border-color: var(--ash); text-decoration: none; }
       .microline { font-family: var(--mono); font-size: 12px; color: var(--ash-dim); margin-top: 14px; letter-spacing: 0.02em; }
@@ -241,7 +238,7 @@
           </div>
 
           <div class="cta rise d4">
-            <span class="btn btn--primary">Chrome Web Store <span class="tag">SOON</span></span>
+            <a class="btn btn--primary" href="https://chromewebstore.google.com/detail/ai-alleyway-%E2%80%94-ai-tool-rev/ekcdijddjcofofgnpgaclnocnmbmmmfn">Add to Chrome →</a>
             <a class="btn btn--ghost" href="https://github.com/ai-alleyway/ai-tool-ratings">View source →</a>
           </div>
           <p class="microline rise d4">free · no account · no permissions · no data collection</p>

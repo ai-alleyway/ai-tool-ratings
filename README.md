@@ -20,8 +20,8 @@ Ratings and verdicts come from real, hands-on testing — the same reviews publi
 ## Privacy
 
 This extension **collects no personal data.** No accounts, no tracking, no analytics. The catalog ships
-bundled (so search works offline); to stay current it fetches a public catalog file from our GitHub
-Pages host — an ordinary request for a public file, never used to track you. See [PRIVACY.md](./PRIVACY.md).
+bundled (so search works offline); to stay current it fetches a public catalog file from
+aialleyway.com — an ordinary request for a public file, never used to track you. See [PRIVACY.md](./PRIVACY.md).
 
 ## Permissions
 
@@ -30,7 +30,7 @@ catalog (and a public updated copy over standard CORS) and opens a page when you
 
 ## Install
 
-- **From the Chrome Web Store:** _(link added once published)_
+- **From the Chrome Web Store:** [AI Alleyway — AI Tool Reviews, Picks & Guides](https://chromewebstore.google.com/detail/ai-alleyway-%E2%80%94-ai-tool-rev/ekcdijddjcofofgnpgaclnocnmbmmmfn)
 - **Unpacked (for development):** `chrome://extensions` → enable **Developer mode** → **Load unpacked**
   → select this folder.
 
@@ -46,10 +46,11 @@ node scripts/build-extension-data.mjs
 AA_SITE_DIR=/path/to/aialleyway node scripts/build-extension-data.mjs
 ```
 
-`catalog.json` lives at the repo root: it is both bundled into the extension (offline fallback) **and**
-served by GitHub Pages so the published extension can fetch the freshest copy with no permissions.
-**To update the live data without re-submitting to the Chrome Web Store:** regenerate and push —
-Pages redeploys and installed copies pick it up on next open. Only *code* changes require a CWS
+`catalog.json` lives at the repo root: it is bundled into the extension as an offline fallback. The
+published extension fetches the freshest copy from `aialleyway.com/extension-catalog.json` (a public
+static file, no permissions needed), falling back to the bundled copy if that request fails.
+**To update the live data without re-submitting to the Chrome Web Store:** regenerate and deploy the
+catalog to aialleyway.com — installed copies pick it up on next open. Only *code* changes require a CWS
 resubmit.
 
 No build step and no dependencies — it's plain HTML/CSS/JS (Manifest V3). Load it unpacked to test.
