@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --void:#101010; --deep:#080808; --carbon:#333; --carbon-soft:#1a1a1a;
+    --polar:#f3f3f3; --ash:#949494; --amber:#e7c59a; --green:#00ac5c;
+    --font:"Outfit",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  }
+  * { box-sizing:border-box; margin:0; }
+  html,body { width:1280px; height:800px; }
+  body {
+    background:
+      radial-gradient(1100px 640px at 82% 46%, #201a12 0%, rgba(32,26,18,0) 60%),
+      var(--void);
+    color:var(--polar); font-family:var(--font);
+    display:grid; grid-template-columns:1fr 430px; align-items:center;
+    gap:0; padding:0 84px; overflow:hidden;
+  }
+  /* left marketing column */
+  .col { max-width:560px; }
+  .kicker { font-family:var(--mono); font-size:14px; letter-spacing:2.5px; color:var(--amber); text-transform:uppercase; }
+  h1 { font-size:66px; line-height:1.02; font-weight:800; letter-spacing:-1.5px; margin:22px 0 0; }
+  h1 .amber { color:var(--amber); }
+  h1 .mono { font-family:var(--mono); font-weight:500; background:var(--carbon-soft); border:1px solid var(--carbon); border-radius:10px; padding:2px 14px; font-size:52px; }
+  .sub { margin-top:22px; font-size:21px; line-height:1.45; color:#cfcfcf; max-width:500px; }
+  .trust { margin-top:30px; font-family:var(--mono); font-size:13.5px; color:var(--ash); letter-spacing:.3px; }
+
+  /* omnibox mockup (scene 3) */
+  .omni-label { margin-top:34px; font-family:var(--mono); font-size:12px; letter-spacing:2px; color:var(--ash); text-transform:uppercase; }
+  .omni { margin-top:10px; display:flex; align-items:center; gap:12px; background:var(--carbon-soft); border:1px solid var(--carbon); border-radius:12px; padding:15px 18px; font-family:var(--mono); font-size:18px; }
+  .omni .kw { color:var(--amber); font-weight:500; }
+  .omni .cur { color:var(--polar); }
+  .omni .hint { margin-left:auto; color:var(--ash); font-size:13px; }
+  .sugg { margin-top:10px; border:1px solid var(--carbon); border-radius:12px; overflow:hidden; }
+  .sugg .row { display:flex; align-items:center; justify-content:space-between; padding:11px 18px; font-size:15px; border-top:1px solid #222; }
+  .sugg .row:first-child { border-top:none; background:#181818; }
+  .sugg .nm { font-weight:600; }
+  .sugg .mk { font-family:var(--mono); font-size:13px; color:var(--ash); }
+  .sugg .mk.star { color:var(--amber); }
+
+  /* checklist (scene 4) */
+  .checks { margin-top:30px; display:flex; flex-direction:column; gap:14px; }
+  .check { display:flex; align-items:center; gap:14px; font-size:19px; }
+  .check .tick { width:26px; height:26px; border-radius:7px; background:rgba(0,172,92,.14); color:var(--green); display:grid; place-items:center; font-weight:800; font-size:15px; flex:0 0 auto; }
+
+  /* right popup panel — mirrors popup.css exactly */
+  .panel { width:388px; justify-self:end; background:var(--void); border:1px solid var(--carbon); border-radius:16px; box-shadow:0 40px 90px rgba(0,0,0,.55); overflow:hidden; font-size:14px; line-height:1.4; }
+  .hdr { display:flex; align-items:center; justify-content:space-between; padding:14px 16px 12px; border-bottom:1px solid var(--carbon); }
+  .brand { display:flex; align-items:center; gap:9px; }
+  .brand__mark { width:22px; height:22px; border-radius:6px; }
+  .brand__name { font-weight:600; letter-spacing:.2px; }
+  .brand__by { font-size:11px; color:var(--ash); }
+  .search { padding:12px 16px 10px; }
+  .q { width:100%; padding:11px 13px; border:1px solid var(--amber); border-radius:9px; background:var(--carbon-soft); color:var(--polar); font-family:var(--font); font-size:14px; display:flex; align-items:center; }
+  .q .txt { color:var(--polar); }
+  .q .car { width:1.5px; height:16px; background:var(--amber); margin-left:2px; }
+  .q.placeholder .txt { color:var(--ash); }
+  .filters { display:flex; flex-wrap:wrap; gap:6px; padding:0 16px 12px; }
+  .chip { padding:5px 12px; border:1px solid var(--carbon); border-radius:999px; background:transparent; color:var(--ash); font-size:12px; }
+  .chip.on { background:var(--amber); border-color:var(--amber); color:#101010; font-weight:600; }
+  .list { padding:0 10px 6px; }
+  .card { display:block; padding:12px 13px; margin:8px 0; border:1px solid var(--carbon); border-radius:11px; background:var(--carbon-soft); }
+  .card.hi { border-color:var(--amber); }
+  .card__top { display:flex; align-items:baseline; justify-content:space-between; gap:10px; }
+  .card__name { font-weight:600; font-size:15px; }
+  .card__rating { display:flex; align-items:center; gap:6px; white-space:nowrap; }
+  .card__stars { color:var(--amber); font-size:12px; letter-spacing:1px; }
+  .card__score { font-weight:600; font-size:13px; }
+  .card__tag { padding:2px 9px; border:1px solid var(--carbon); border-radius:999px; font-size:10.5px; font-weight:600; color:var(--ash); }
+  .card__label { display:inline-block; margin-top:6px; font-size:11px; color:var(--green); font-weight:600; }
+  .card__verdict { margin-top:5px; color:var(--ash); font-size:12.5px; }
+  .card__cta { display:block; margin-top:8px; font-size:12px; color:var(--amber); font-weight:600; }
+  .ftr { display:flex; align-items:center; justify-content:space-between; padding:11px 16px; border-top:1px solid var(--carbon); font-size:12px; }
+  .ftr__count { color:var(--ash); }
+  .ftr__link { color:var(--amber); font-weight:600; }
+  .hide { display:none !important; }
+</style>
+</head>
+<body>
+  <div class="col" id="col"></div>
+  <div class="panel" id="panel"></div>
+
+<script>
+const MARK = `<img class="brand__mark" src="../icons/icon-32.png" alt="" />`;
+
+function stars(r){const f=Math.round(r);return "★".repeat(f)+"☆".repeat(Math.max(0,5-f));}
+function cardHTML(c){
+  const rating = c.rating!=null
+    ? `<span class="card__rating"><span class="card__stars">${stars(c.rating)}</span><span class="card__score">${c.rating.toFixed(1)}</span></span>`
+    : `<span class="card__tag">${c.tag}</span>`;
+  return `<div class="card ${c.hi?'hi':''}">
+    <div class="card__top"><span class="card__name">${c.name}</span>${rating}</div>
+    ${c.label?`<span class="card__label">${c.label}</span>`:''}
+    ${c.verdict?`<p class="card__verdict">${c.verdict}</p>`:''}
+    <span class="card__cta">${c.cta}</span>
+  </div>`;
+}
+function panelHTML(p){
+  return `
+  <div class="hdr"><div class="brand">${MARK}<span class="brand__name">AI Alleyway</span></div><span class="brand__by">reviews · picks · guides</span></div>
+  <div class="search"><div class="q ${p.placeholder?'placeholder':''}"><span class="txt">${p.query}</span><span class="car"></span></div></div>
+  <div class="filters">${p.chips.map((c,i)=>`<span class="chip ${i===p.active?'on':''}">${c}</span>`).join('')}</div>
+  <div class="list">${p.cards.map(cardHTML).join('')}</div>
+  <div class="ftr"><span class="ftr__count">${p.count}</span><span class="ftr__link">Browse all →</span></div>`;
+}
+
+const CHIPS = ["All","Tools","Compare","Best-of","Guides"];
+const SCENES = {
+  2: {
+    col:`<div class="kicker">Browser extension · Free</div>
+      <h1>Every rating,<br><span class="amber">one click away.</span></h1>
+      <p class="sub">Search 89 hands-on AI-tool reviews, top picks, and buying guides — right from your toolbar.</p>
+      <p class="trust">free · no account · no permissions · no data collection</p>`,
+    panel:{ query:"voice", placeholder:false, chips:CHIPS, active:1, count:"7 of 89",
+      cards:[
+        {name:"ElevenLabs", rating:4.7, label:"Category Leader", verdict:"The voices are worth it. The credit math isn't always.", cta:"Read full review →", hi:true},
+        {name:"Descript", rating:4.0, verdict:"Edit audio by editing text — and it mostly just works.", cta:"Read full review →"},
+        {name:"Murf", rating:3.9, verdict:"Solid studio voices, metered by the second.", cta:"Read full review →"},
+      ]}
+  },
+  3: {
+    col:`<div class="kicker">Address-bar search</div>
+      <h1>Type <span class="mono">aa</span>,<br>get the <span class="amber">verdict.</span></h1>
+      <p class="sub">Search the whole catalog from the address bar. Hit Enter to open the review.</p>
+      <div class="omni-label">Omnibox</div>
+      <div class="omni"><span class="kw">aa</span><span class="cur">note taker</span><span class="hint">↵ opens the best match</span></div>
+      <div class="sugg">
+        <div class="row"><span class="nm">Granola</span><span class="mk star">4.6★</span></div>
+        <div class="row"><span class="nm">Fathom</span><span class="mk star">4.6★</span></div>
+        <div class="row"><span class="nm">Otter vs Granola</span><span class="mk">Comparison</span></div>
+        <div class="row"><span class="nm">Best AI note-taker</span><span class="mk">Best-of</span></div>
+      </div>`,
+    panel:{ query:"note taker", placeholder:false, chips:CHIPS, active:0, count:"5 of 89",
+      cards:[
+        {name:"Granola", rating:4.6, label:"Best for solo notes", verdict:"Six rough bullets in, a summary sharper than mine out.", cta:"Read full review →", hi:true},
+        {name:"Fathom", rating:4.6, label:"Best for meetings", verdict:"A bot-free recorder that nails the action items.", cta:"Read full review →"},
+        {name:"Otter vs Granola", tag:"Comparison", verdict:"Transcribe everything, or enhance what you typed?", cta:"Read comparison →"},
+      ]}
+  },
+  4: {
+    col:`<div class="kicker">Privacy by design</div>
+      <h1>No permissions.<br><span class="amber">No tracking.</span></h1>
+      <p class="sub">It reads nothing on your pages and stores zero data. It just searches our independent reviews.</p>
+      <div class="checks">
+        <div class="check"><span class="tick">✓</span> Zero browser permissions requested</div>
+        <div class="check"><span class="tick">✓</span> No account, no sign-in</div>
+        <div class="check"><span class="tick">✓</span> No analytics, no data collection</div>
+        <div class="check"><span class="tick">✓</span> Open source on GitHub</div>
+      </div>`,
+    panel:{ query:"Search AI tools, reviews & guides…", placeholder:true, chips:CHIPS, active:0, count:"89 of 89",
+      cards:[
+        {name:"n8n", rating:4.6, label:"Category Leader", verdict:"The most powerful automation tool — if you'll self-host.", cta:"Read full review →", hi:true},
+        {name:"Fliki", rating:4.3, label:"Best value", verdict:"The voice is the product, and a free tier that exports.", cta:"Read full review →"},
+        {name:"Best AI automation tools", tag:"Best-of", verdict:"n8n vs Make vs Zapier, ranked by who they're for.", cta:"See the winners →"},
+      ]}
+  },
+};
+
+const s = new URLSearchParams(location.search).get("s") || "2";
+const scene = SCENES[s];
+document.getElementById("col").innerHTML = scene.col;
+document.getElementById("panel").innerHTML = panelHTML(scene.panel);
+document.documentElement.dataset.ready = "1";
+</script>
+</body>
+</html>
