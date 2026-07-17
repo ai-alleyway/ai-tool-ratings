@@ -1,8 +1,8 @@
 # AI Alleyway — AI Tool Reviews, Picks & Guides
 
-A tiny, free Chrome extension that puts independent, hands-on **AI-tool reviews, top picks, and buying
-guides** one click away. Search any tool we've reviewed or picked, or find a comparison / best-of guide
-— right from your toolbar or the address bar.
+A tiny, free browser extension — on **Chrome, Edge, and Firefox** — that puts independent, hands-on
+**AI-tool reviews, top picks, and buying guides** one click away. Search any tool we've reviewed or
+picked, or find a comparison / best-of guide — right from your toolbar or the address bar.
 
 Built and maintained by **[AI Alleyway](https://aialleyway.com)**, an independent AI-tools review site.
 
@@ -30,9 +30,12 @@ catalog (and a public updated copy over standard CORS) and opens a page when you
 
 ## Install
 
-- **From the Chrome Web Store:** [AI Alleyway — AI Tool Reviews, Picks & Guides](https://chromewebstore.google.com/detail/ai-alleyway-%E2%80%94-ai-tool-rev/ekcdijddjcofofgnpgaclnocnmbmmmfn)
-- **Unpacked (for development):** `chrome://extensions` → enable **Developer mode** → **Load unpacked**
-  → select this folder.
+- **Chrome Web Store:** [AI Alleyway — AI Tool Reviews, Picks & Guides](https://chromewebstore.google.com/detail/ai-alleyway-%E2%80%94-ai-tool-rev/ekcdijddjcofofgnpgaclnocnmbmmmfn)
+- **Microsoft Edge Add-ons:** [AI Alleyway — AI Tool Reviews, Picks & Guides](https://microsoftedge.microsoft.com/addons/detail/ai-alleyway-%E2%80%94-ai-tool-rev/hlhdamngfmhffeilgnlobmbehpfjelfa)
+- **Firefox Add-ons (AMO):** [AI Alleyway — AI Tools](https://addons.mozilla.org/en-US/firefox/addon/ai-alleyway-ai-tools/)
+- **Unpacked (for development):** `chrome://extensions` (or `edge://extensions`) → enable **Developer
+  mode** → **Load unpacked** → select this folder. For Firefox: `about:debugging` → **This Firefox** →
+  **Load Temporary Add-on** → pick `manifest.json`.
 
 ## Development
 
@@ -54,6 +57,23 @@ catalog to aialleyway.com — installed copies pick it up on next open. Only *co
 resubmit.
 
 No build step and no dependencies — it's plain HTML/CSS/JS (Manifest V3). Load it unpacked to test.
+
+### Packaging for the stores
+
+One source, three store packages. `scripts/build-packages.mjs` produces a submittable zip per store:
+
+```bash
+node scripts/build-packages.mjs
+# → dist/ai-tool-ratings-chrome-<v>.zip   (Chrome Web Store — MV3, service_worker)
+# → dist/ai-tool-ratings-edge-<v>.zip     (Edge Add-ons — identical to the Chrome package)
+# → dist/ai-tool-ratings-firefox-<v>.zip  (Firefox AMO — MV3 + gecko id + background.scripts)
+```
+
+Chrome and Edge accept the exact same MV3 package. Firefox needs only two manifest tweaks (an
+extension `gecko.id` and `background.scripts` instead of `background.service_worker`) — the code uses
+only `chrome.omnibox` / `chrome.runtime` / `chrome.tabs`, which Firefox exposes via the `chrome.*`
+alias, so no code changes are required. The root `manifest.json` is the Chrome/Edge manifest; the
+Firefox variant is generated at package time.
 
 ## License
 
