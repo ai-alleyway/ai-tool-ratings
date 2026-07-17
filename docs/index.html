@@ -107,17 +107,27 @@
       .omni .drop .sc { color: var(--amber); margin-left: auto; }
       .omni .drop .vd { color: var(--ash); }
 
-      .cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 30px; align-items: center; }
+      .cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 30px; align-items: stretch; }
       .btn {
-        display: inline-flex; align-items: center; gap: 9px;
-        padding: 13px 20px; border-radius: 11px; font-weight: 600; font-size: 15px;
+        display: inline-flex; align-items: center; gap: 11px;
+        padding: 10px 18px 10px 13px; border-radius: 13px; font-weight: 600; font-size: 15px;
         border: 1px solid var(--line);
       }
-      .btn--primary { background: var(--amber); color: #101010; border-color: var(--amber); }
-      .btn--primary:hover { text-decoration: none; filter: brightness(1.06); }
-      .btn--ghost { color: var(--polar); }
-      .btn--ghost:hover { border-color: var(--ash); text-decoration: none; }
-      .microline { font-family: var(--mono); font-size: 12px; color: var(--ash-dim); margin-top: 14px; letter-spacing: 0.02em; }
+      /* browser-store buttons — the brand logo is the one pop of colour on a dark chip */
+      .btn--store {
+        background: linear-gradient(180deg, var(--panel-2), var(--panel));
+        color: var(--polar);
+        transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+      }
+      .btn--store:hover {
+        border-color: #3d3d44; transform: translateY(-2px);
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.38); text-decoration: none;
+      }
+      .btn--store img { width: 22px; height: 22px; display: block; flex: none; }
+      .btn--store b { font-weight: 600; font-size: 15px; letter-spacing: -0.01em; }
+      .microline { font-family: var(--mono); font-size: 12px; color: var(--ash-dim); margin-top: 16px; letter-spacing: 0.02em; }
+      .microline a { color: var(--ash); border-bottom: 1px solid var(--line); }
+      .microline a:hover { color: var(--polar); text-decoration: none; }
 
       /* ---- popup product mock (lit by the streetlight) ---- */
       .stage { display: flex; justify-content: center; }
@@ -238,12 +248,20 @@
           </div>
 
           <div class="cta rise d4">
-            <a class="btn btn--primary" href="https://chromewebstore.google.com/detail/ai-alleyway-%E2%80%94-ai-tool-rev/ekcdijddjcofofgnpgaclnocnmbmmmfn">Add to Chrome →</a>
-            <a class="btn btn--ghost" href="https://microsoftedge.microsoft.com/addons/detail/ai-alleyway-%E2%80%94-ai-tool-rev/hlhdamngfmhffeilgnlobmbehpfjelfa">Add to Edge →</a>
-            <a class="btn btn--ghost" href="https://addons.mozilla.org/en-US/firefox/addon/ai-alleyway-ai-tools/">Add to Firefox →</a>
-            <a class="btn btn--ghost" href="https://github.com/ai-alleyway/ai-tool-ratings">View source →</a>
+            <a class="btn btn--store" href="https://chromewebstore.google.com/detail/ai-alleyway-%E2%80%94-ai-tool-rev/ekcdijddjcofofgnpgaclnocnmbmmmfn">
+              <img src="https://cdn.aialleyway.com/tool-logos/chrome.png" alt="" width="24" height="24" />
+              <b>Chrome</b>
+            </a>
+            <a class="btn btn--store" href="https://microsoftedge.microsoft.com/addons/detail/ai-alleyway-%E2%80%94-ai-tool-rev/hlhdamngfmhffeilgnlobmbehpfjelfa">
+              <img src="https://cdn.aialleyway.com/tool-logos/edge.png" alt="" width="24" height="24" />
+              <b>Edge</b>
+            </a>
+            <a class="btn btn--store" href="https://addons.mozilla.org/en-US/firefox/addon/ai-alleyway-ai-tools/">
+              <img src="https://cdn.aialleyway.com/tool-logos/firefox.png" alt="" width="24" height="24" />
+              <b>Firefox</b>
+            </a>
           </div>
-          <p class="microline rise d4">free · no account · no permissions · no data collection</p>
+          <p class="microline rise d4">free · no account · no permissions · no data collection · <a href="https://github.com/ai-alleyway/ai-tool-ratings">view source ↗</a></p>
         </div>
 
         <div class="stage rise d3">
